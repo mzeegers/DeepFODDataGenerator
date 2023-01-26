@@ -71,7 +71,10 @@ class DataProcessor(object):
     def CollectandSaveData(self, Instance):
     
         #Point to the folder corresponding to the CT scan instance
-        DataPathInstance = DataPath + 'Object' + str(Instance) + '_Scan20W/'
+        if(Instance <= 111):
+            DataPathInstance = DataPath + 'Object' + str(Instance) + '_Scan20W/'
+        else:
+            DataPathInstance = DataPath + 'ManyObject' + str(Instance-111) + '_Scan20W/'
     
         #Load all data filenames
         filenames = sorted(os.listdir(DataPathInstance))
