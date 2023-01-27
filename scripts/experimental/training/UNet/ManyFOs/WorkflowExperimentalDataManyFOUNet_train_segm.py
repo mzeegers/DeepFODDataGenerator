@@ -4,7 +4,8 @@
 # The results are the networks and log files generated from the UNet code
 # The code assumes that the (experimental) training to be available (see below)
 # If not done beforehand, run the ReconstructAndProject script first (located in the scripts/experimental/generation folder) to create it
-# The ratio between training and validation data is hardcoded to 9:1 (but can relatively easily be changed)
+# The ratio between training and validation data is the same as training with MSD (needs to be run first)
+# The log files from MSD training indicating which folder instances are used should be copied into the fodler before running this script
 
 # Code assumes training data to be saved in the following way
 # - /data/TrainingDataExperimental/Instance001/
