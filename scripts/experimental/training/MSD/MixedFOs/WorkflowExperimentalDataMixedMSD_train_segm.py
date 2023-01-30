@@ -80,9 +80,11 @@ PossibleIntegers2 = list(range(0,len(sorted(os.listdir(DataPath + Dataset + '/')
 
 #Remove indices of folders without foreign objects from possibilities
 for i in NoFO:
-    PossibleIntegers.remove(i-1)
+    if i <= len(PossibleIntegers):
+        PossibleIntegers.remove(i-1)
 for i in NoFO2:
-    PossibleIntegers2.remove(i-1)
+    if i <= len(PossibleIntegers2):
+        PossibleIntegers2.remove(i-1)
 
 #Randomly select indices and corresponding CT scan folders from the remaining possibilities
 for i in range(0,NumObj):

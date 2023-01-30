@@ -33,10 +33,10 @@ import tifffile
 
 layers = 100
 dilations = 10
-DataPath = '../../data/' #Location of data and GT #'/export/scratch1/home/zeegers/AutomatedFODProjectExperimentalData/'
-Dataset = 'TrainingDataExperimental' #Selected data folder and printed folder in network name
+DataPath = '/export/scratch3/zeegers/AutomatedFODProjectExperimentalData/'# '../../../../../data/' #Location of data and GT #'/export/scratch1/home/zeegers/AutomatedFODProjectExperimentalData/'
+Dataset = 'ProjectionDataCorrectedSmall' #'TrainingDataExperimental' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
-GTName = 'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name
+GTName = 'GTProjectionsSmall' #'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name
 targetLabels = 2 #Number of differnent labels in GT
 NoFO = [9,14,26,38,50,59] #CT scans without foreign objects - not used for training
 
@@ -76,7 +76,8 @@ PossibleIntegers = list(range(0,len(sorted(os.listdir(DataPath + Dataset + '/'))
 
 #Remove indices of folders without foreign objects from possibilities
 for i in NoFO:
-    PossibleIntegers.remove(i-1)
+    if i <= len(PossibleIntegers):
+        PossibleIntegers.remove(i-1)
 
 #Randomly select indices and corresponding CT scan folders from the remaining possibilities
 for i in range(0,NumObj):

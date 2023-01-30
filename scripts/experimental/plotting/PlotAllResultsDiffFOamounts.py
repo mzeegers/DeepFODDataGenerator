@@ -17,35 +17,35 @@ import numpy as np
 import os
 
 curPath = os.path.dirname(os.path.abspath(__file__))
-pathToQuant = '/../../../results/experimental/quantitative'
-pathToPlots = '/../../../results/experimental/plots'
+pathToQuant = '/../../../results/experimental/quantitative/'
+pathToPlots = '/../../../results/experimental/plots/'
 
 #Load relevant files
-SegAccUNet = np.loadtxt(curPath + pathToQuant + '/../../../results/experimental/quantitative/RawResults_Paper_UNet_AvgClassAcc.csv', delimiter=' ')
-SpecialmetricUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_DetAcc.csv', delimiter=' ')
-FPmetricUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_FPrate.csv', delimiter=' ')
-F1ScoreUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_F1ScoreAcc.csv', delimiter=' ')
-SegAccManyFOUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_ManyFO_AvgClassAcc.csv', delimiter=' ')
-SpecialmetricManyFOUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_ManyFO_DetAcc.csv', delimiter=' ')
-FPmetricManyFOUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_ManyFO_FPrate.csv', delimiter=' ')
-F1ScoreManyFOUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_ManyFO_F1ScoreAcc.csv', delimiter=' ')
-SegAccMixedUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_Mixed_AvgClassAcc.csv', delimiter=' ')
-SpecialmetricMixedUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_Mixed_DetAcc.csv', delimiter=' ')
-FPmetricMixedUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_Mixed_FPrate.csv', delimiter=' ')
-F1ScoreMixedUNet = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_UNet_Mixed_F1ScoreAcc.csv', delimiter=' ')
+SegAccUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_AvgClassAcc.csv', delimiter=' ')
+SpecialmetricUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_DetAcc.csv', delimiter=' ')
+FPmetricUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_FPrate.csv', delimiter=' ')
+F1ScoreUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_F1ScoreAcc.csv', delimiter=' ')
+SegAccManyFOUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_ManyFO_AvgClassAcc.csv', delimiter=' ')
+SpecialmetricManyFOUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_ManyFO_DetAcc.csv', delimiter=' ')
+FPmetricManyFOUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_ManyFO_FPrate.csv', delimiter=' ')
+F1ScoreManyFOUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_ManyFO_F1ScoreAcc.csv', delimiter=' ')
+SegAccMixedUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_Mixed_AvgClassAcc.csv', delimiter=' ')
+SpecialmetricMixedUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_Mixed_DetAcc.csv', delimiter=' ')
+FPmetricMixedUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_Mixed_FPrate.csv', delimiter=' ')
+F1ScoreMixedUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_Mixed_F1ScoreAcc.csv', delimiter=' ')
 
-SegAccMSD = np.loadtxt(curPath + pathToQuant + '/RawResults_Paper_MSD_AvgClassAcc.csv', delimiter=' ')
+SegAccMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_AvgClassAcc.csv', delimiter=' ')
 SpecialmetricMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_DetAcc.csv', delimiter=' ')
-FPmetricMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_FPrate.csv', delimiter=' ')
-F1ScoreMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_F1ScoreAcc.csv', delimiter=' ')
-SegAccManyFOMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_ManyFO_AvgClassAcc.csv', delimiter=' ')
-SpecialmetricManyFOMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_ManyFO_DetAcc.csv', delimiter=' ')
-FPmetricManyFOMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_ManyFO_FPrate.csv', delimiter=' ')
-F1ScoreManyFOMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_ManyFO_F1ScoreAcc.csv', delimiter=' ')
-SegAccMixedMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_Mixed_AvgClassAcc.csv', delimiter=' ')
-SpecialmetricMixedMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_Mixed_DetAcc.csv', delimiter=' ')
-FPmetricMixedMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_Mixed_FPrate.csv', delimiter=' ')
-F1ScoreMixedMSD = np.loadtxt(curPath + pathToQuant + 'Experimentsv3Mixed/RawResults_Paper_MSD_Mixed_F1ScoreAcc.csv', delimiter=' ')
+FPmetricMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_FPrate.csv', delimiter=' ')
+F1ScoreMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_F1ScoreAcc.csv', delimiter=' ')
+SegAccManyFOMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_ManyFO_AvgClassAcc.csv', delimiter=' ')
+SpecialmetricManyFOMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_ManyFO_DetAcc.csv', delimiter=' ')
+FPmetricManyFOMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_ManyFO_FPrate.csv', delimiter=' ')
+F1ScoreManyFOMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_ManyFO_F1ScoreAcc.csv', delimiter=' ')
+SegAccMixedMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_Mixed_AvgClassAcc.csv', delimiter=' ')
+SpecialmetricMixedMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_Mixed_DetAcc.csv', delimiter=' ')
+FPmetricMixedMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_Mixed_FPrate.csv', delimiter=' ')
+F1ScoreMixedMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_Mixed_F1ScoreAcc.csv', delimiter=' ')
 
 Runs = SegAccMSD.shape[1]
 

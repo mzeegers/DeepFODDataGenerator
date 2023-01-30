@@ -85,7 +85,7 @@ Prefix = '../training/'
 curPath = os.path.dirname(os.path.abspath(__file__))
 
 
-def computeNetworkResults(NetworkPath, Runs, NumbObjs, flsin):
+def computeNetworkResults(NetworkPath, Runs, NumObjs, flsin):
 
     SegAcc = np.zeros((len(NumObjs),len(Runs)))
     F1ScoreAcc = np.zeros((len(NumObjs),len(Runs)))
@@ -197,9 +197,9 @@ def computeNetworkResults(NetworkPath, Runs, NumbObjs, flsin):
             F1ScoreAcc[cnt,RunIndex] += TotalF1Score*100
             Specialmetric[cnt,RunIndex] += cntSpecialmetric/float(cntSpecialmetricTotal)*100
             if(float(cntFPmetricTotal) == 0):
-                FPmetricOneProj[cnt,RunIndex] += 0
+                FPmetric[cnt,RunIndex] += 0
             else:
-                FPmetricOneProj[cnt,RunIndex] += cntFPmetric/float(cntFPmetricTotal)*100
+                FPmetric[cnt,RunIndex] += cntFPmetric/float(cntFPmetricTotal)*100
             cnt += 1
 
         RunIndex += 1
@@ -215,7 +215,7 @@ NumObjs = [1,2,3,4,5,7,10,15,20,30,40,50,60]
 Runs = [0,1,2,3,4]
 NetworkPath = Prefix + '/MSD/FewFOs/'
 
-SegAcc, F1ScoreAcc, Specialmetric, FPmetric = computeNetworkResults(NetworkPath, Runs, NumbObjs, flsin)
+SegAcc, F1ScoreAcc, Specialmetric, FPmetric = computeNetworkResults(NetworkPath, Runs, NumObjs, flsin)
 
 #Compute means and standard deviations of all measures
 SegAccAvg = np.mean(SegAcc, axis = 1)
@@ -241,7 +241,7 @@ NumObjsManyFO = [1,2,3,4,5,7,10,15,20]
 Runs = [0,1,2,3,4]
 NetworkPath = Prefix + '/MSD/ManyFOs/'
 
-SegAccManyFO, F1ScoreAccManyFO, SpecialmetricManyFO, FPmetricManyFO = computeNetworkResults(NetworkPath, Runs, NumbObjsManyFO, flsin)
+SegAccManyFO, F1ScoreAccManyFO, SpecialmetricManyFO, FPmetricManyFO = computeNetworkResults(NetworkPath, Runs, NumObjsManyFO, flsin)
 
 #Compute means and standard deviations of all measures
 SegAccAvgManyFO = np.mean(SegAccManyFO, axis = 1)
@@ -293,7 +293,7 @@ NumObjsOneProj = [2,3,4,5,7,10,20,30,40,50,60]
 Runs = [0,1,2,3,4]
 NetworkPath = Prefix + '/MSD/FewFOsOneRadiograph/'
 
-SegAccOneProj, F1ScoreAccOneProj, SpecialmetricOneProj, FPmetricOneProj = computeNetworkResults(NetworkPath, Runs, NumbObjsOneProj, flsin)
+SegAccOneProj, F1ScoreAccOneProj, SpecialmetricOneProj, FPmetricOneProj = computeNetworkResults(NetworkPath, Runs, NumObjsOneProj, flsin)
 
 #Compute means and standard deviations of all measures
 SegAccAvgOneProj = np.mean(SegAccOneProj, axis = 1)
