@@ -18,7 +18,7 @@ import os
 
 curPath = os.path.dirname(os.path.abspath(__file__))
 pathToQuant = '/../../../results/experimental/quantitative/'
-pathToPlots = '/../../../results/experimental/plots/'
+pathToPlots = '../../../results/experimental/plots/'
 
 #Load relevant files
 SegAccUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_AvgClassAcc.csv', delimiter=' ')

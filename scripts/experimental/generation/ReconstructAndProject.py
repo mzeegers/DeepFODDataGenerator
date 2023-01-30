@@ -3,6 +3,7 @@
 #This script carries out the workflow for reconstruction of CT data, segmentation and forward projections
 #The results are the flat- and darkfield corrected data and their ground truth locations
 #The code assumes that the CT data has been downloaded and stored in the '/data/CTData/' folder
+#Link to download location for the CT data: https://zenodo.org/record/5866228
 #The code can be modified according to any changes/enhancements in the data generation workflow
 #The defaultValues function contains the parameters that can be changed
 #Code is compatible with segmentations containing multiple labels
