@@ -1,3 +1,15 @@
+#Ploting script for results from MSD and UNet networks tested on workflow generated data (many projection vs. one projection per scan)
+
+# This script plots the results of MSD and UNet networks on the workflow-generated (experimental) testing data
+# The plots indicate the difference in results when all training examples are used in a CT rather than only one annotated example
+# The results are the plots files in the results/plots/ folder
+
+# The code assumes that the csv files with MSD and UNet network results on training data are available in the results/quantitative/ folder
+
+#Author,
+#   Mathé Zeegers, 
+#       Centrum Wiskunde & Informatica, Amsterdam (m.t.zeegers@cwi.nl)
+
 import csv
 import matplotlib
 import matplotlib.pyplot as plt

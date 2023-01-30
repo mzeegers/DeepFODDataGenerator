@@ -1,3 +1,15 @@
+#Ploting script for results from MSD and UNet networks tested on workflow generated data (with varying amounts of foreign objects)
+
+# This script plots the results of MSD and UNet networks on the workflow-generated (experimental) testing data
+# The plots indicate the difference in results when different number of foreign objects are contained in the CT scanned objects (few vs. many vs. mixed)
+# The results are the plots files in the results/plots/ folder
+
+# The code assumes that the csv files with MSD and UNet network results on training data are available in the results/quantitative/ folder
+
+#Author,
+#   Mathé Zeegers, 
+#       Centrum Wiskunde & Informatica, Amsterdam (m.t.zeegers@cwi.nl)
+
 import csv
 import matplotlib
 import matplotlib.pyplot as plt

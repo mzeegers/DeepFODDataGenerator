@@ -231,7 +231,6 @@ class WorkflowUNet(nn.Module):
         x = self.maxpool(conv2)
         
         x = self.dconv_down3(x)
-
         x = self.upsample(x)        
         x = torch.cat([x, conv2], dim=1)       
 
