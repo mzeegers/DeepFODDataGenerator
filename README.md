@@ -1,4 +1,4 @@
-# <a href="https://www.sciencedirect.com/science/article/pii/S0957417422010429" style="color: black;">DeepFODDataGenerator/a>: A workflow for generating deep learning data through X-ray tomography for X-ray based object detection
+# <a href="https://www.sciencedirect.com/science/article/pii/S0957417422010429" style="color: black;">DeepFODDataGenerator</a>: A workflow for generating deep learning data through X-ray tomography for X-ray based object detection
 
    <p align="center">
    <img src="./images/Workflowv3Applied_simplified.svg">
@@ -43,5 +43,3 @@ Code written by:
 - Mathé Zeegers (m [dot] t [dot] zeegers [at] cwi [dot] nl).
 
 The MSD and UNet training scripts contain elements of MSD code (https://github.com/dmpelt/msdnet) by Daniël Pelt and PyTorch UNet code (https://github.com/usuyama/pytorch-unet) by Naoto Usuyama respectively.
-
-
