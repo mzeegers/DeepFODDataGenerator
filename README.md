@@ -1,9 +1,14 @@
-# <a href="https://www.sciencedirect.com/science/article/pii/S0957417422010429" style="color: black;">DeepFODDataGenerator</a>: A workflow for generating deep learning data through X-ray tomography for X-ray based object detection
+# <a href="https://www.sciencedirect.com/science/article/pii/S0957417422010429" style="color: black;">DeepFODDataGenerator</a>: A workflow for generating deep learning data for X-ray based object detection
 
    <p align="center">
    <img src="./images/Workflowv3Applied_simplified.svg">
     </p>
     
+## Introduction
+
+## Requirements
+
+## Scripts
 
 
 ## Example results:
