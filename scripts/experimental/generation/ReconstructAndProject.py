@@ -54,8 +54,8 @@ class DataProcessor(object):
         self.resizex = 128                      #Target image size in x direction (note: aspect ratio not maintained)
         self.projThreshold = 0                  #Threshold in projections: all values large than this will be set to 1
         self.projThresholdAfterresize = 0.5     #Threshold in projections after resizing
-        self.ALG = 'FDK_CUDA'                   #Reconstruction algorithm in astra
-        self.ITER = 1                           #Number of iteration in reconstruction algorithm
+        self.ALG = 'SIRT3D_CUDA'                #Reconstruction algorithm in astra
+        self.ITER = 100                         #Number of iteration in reconstruction algorithm
         self.resizeDataFactor = 0.5             #Optional resizing of the data for memory purposes
         self.detPixelsy = int(0.5*self.detSizey)#Number of projection detector pixels after resizing the data in y direction
         self.detPixelsx = int(0.5*self.detSizex)#Number of projection detector pixels after resizing the data in x direction
@@ -114,7 +114,6 @@ class DataProcessor(object):
 
         #Load the remaining CT images and save the results after dark- and flatfield correction
         fileCounter = 0
-            
         print("Loading and correcting...")
         for f in tqdm(datafiles):
             #Dark- and flatfield correction
@@ -188,7 +187,7 @@ class DataProcessor(object):
     # Reconstructs the object from the CT data
     def CTReconstruction(self):
 
-        #Crop if needed in case of memory issues, uncomment if undesired
+        #Crop if needed in case of memory issues
         print("Resizing data...")
         self.CorData = scipy.ndimage.zoom(self.CorData, (self.resizeDataFactor, 1, self.resizeDataFactor)) #middle argument represents angles
         print("Data size:", self.CorData.shape)
@@ -200,10 +199,7 @@ class DataProcessor(object):
 
         #Create the sinogram and choose the reconstruction algorithm
         sinogram_id = astra.data3d.create('-sino', proj_geom, self.CorData)
-
-        ALG = 'FDK_CUDA'
-        ITER = 1
-
+        
         rec_id = astra.data3d.create('-vol', vol_geom)
         cfg = astra.astra_dict(self.ALG)
         cfg['ReconstructionDataId'] = rec_id
