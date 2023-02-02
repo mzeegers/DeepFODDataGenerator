@@ -42,7 +42,7 @@ from collections import defaultdict
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-DataPath = '../../data/' #Location of data and GT #'/export/scratch1/home/zeegers/AutomatedFODProjectExperimentalData/'
+DataPath = '../../../../../data/' #Location of data and GT
 DatasetName = 'TrainingDataExperimental' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name

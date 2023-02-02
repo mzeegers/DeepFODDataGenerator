@@ -33,10 +33,10 @@ import tifffile
 
 layers = 100
 dilations = 10
-DataPath = '/export/scratch3/zeegers/AutomatedFODProjectExperimentalData/'# '../../../../../data/' #Location of data and GT #'/export/scratch1/home/zeegers/AutomatedFODProjectExperimentalData/'
-Dataset = 'ProjectionDataCorrectedSmall' #'TrainingDataExperimental' #Selected data folder and printed folder in network name
+DataPath = '../../../../../data/' #Location of data and GT
+Dataset = 'TrainingDataExperimental' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
-GTName = 'GTProjectionsSmall' #'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name
+GTName = 'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name
 targetLabels = 2 #Number of differnent labels in GT
 NoFO = [9,14,26,38,50,59] #CT scans without foreign objects - not used for training
 
@@ -183,6 +183,6 @@ outfolder.mkdir(exist_ok=True)
 for i in range(0,targetLabels):
     singlechannellogs.append(msdnet.loggers.ImageLogger(str(outfolder) + '/log_segm' + SettingsExt + '_singlechannel_' + str(i), chan_out=i, onlyifbetter=True, imsize = 500))
 
-# Train network until program is stopped manually or given time runs out
+#Train network until program is stopped manually or given time runs out
 print("Training starting...")
 msdnet.train.train(n, t, val, bprov, 'segm_params' + SettingsExt + '.h5', loggers=[consolelog,filelog,imagelog] + singlechannellogs, val_every=len(datsv)//10, progress = True)
