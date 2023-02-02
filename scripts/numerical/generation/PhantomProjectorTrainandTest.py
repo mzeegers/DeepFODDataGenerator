@@ -1,7 +1,6 @@
 #Projection of 3D phantom materials (including perfect ground truth creation) for demonstration of the workflow
 
 #This script carries out the material projections from 3D phantoms, and generated the 'perfect' ground truth (i.e. directly projected from the phantoms) 
-
 #The results are the material projections and correpsponding ground truth projections for the training set
 # as well as material projections (2 perpendicular ones per object) and corresponding ground truth projections for the test set
 #The code assumes that the PhantomGeneratorTrainandTest.py script has been carried out to generate the phantoms.

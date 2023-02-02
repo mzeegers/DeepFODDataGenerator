@@ -1,9 +1,12 @@
 #Generation of training data from CT scans (the workflow)
 
-#This script carries out the workflow for reconstruction of CT data, segmentation and forward projections
-#The results are the flat- and darkfield corrected data and their ground truth locations
-#The code assumes that the CT data has been downloaded and stored in the '/data/CTData/' folder
-#Link to download location for the CT data: https://zenodo.org/record/5866228
+#This script carries out the workflow for reconstruction of the artificially generated data, as well as segmentation and forward projections
+#The results are the projected ground truth locations for each artificial CT scan
+#The code assumes that PhantomGeneratorTrainandTest.py, PhantomProjectorTrainandTest.py and SpectralDataGenerator.py are carried out first
+# and that the projection data is available in the /data/Numerical/ProjectionData/ folder
+
+#NOTE: This code is only needed for subsequent comparison of the 'perfect' ground truth with the workflow-generated ground truth, and not for training with the neural networks (see paper section 4.8. for explanation)
+ 
 #The code can be modified according to any changes/enhancements in the data generation workflow
 #The defaultValues function contains the parameters that can be changed
 #Code is compatible with segmentations containing multiple labels
@@ -28,12 +31,12 @@ from tqdm import tqdm
 np.set_printoptions(threshold=np.inf)
 
 #Folders containing the CT data and folders to write results to
-DataPath = '../../../data/CTData/'
-GTSavePath = '../../../data/TrainingDataExperimentalGT/'
-DataSavePath = '../../../data/TrainingDataExperimental/'
+DataPath = '../../../data/Numerical/ProjectionData/'
+RecPath = '../../../data/Numerical/Reconstructions/'
+GTSavePath = '../../../data/Numerical/GTProjectionsTrain/'
 
-InstanceBegin = 1
-InstanceEnd = 2
+InstanceBegin = 0
+InstanceEnd = 100
 
 
 class DataProcessor(object):
@@ -46,24 +49,18 @@ class DataProcessor(object):
 
     def defaultValues(self):
         
-        self.Angles = 1800                      #Number of angles in each CT scan
-        self.detSizey = 760                     #Number of detector pixels in the CT scan in y direction
-        self.detSizex = 956                     #Number of detector pixels in the CT scan in x direction
-        self.threshold3D = 0.011                #Threshold paramter of thresholding segmentation 
-        self.resizey = 128                      #Target image size in y direction
-        self.resizex = 128                      #Target image size in x direction (note: aspect ratio not maintained)
+        self.Angles = 1800                      #Number of angles in each CT scan                                     
+        self.threshold3D = 0.04                 #Threshold paramter of thresholding segmentation 
         self.projThreshold = 0                  #Threshold in projections: all values large than this will be set to 1
         self.projThresholdAfterresize = 0.5     #Threshold in projections after resizing
         self.ALG = 'SIRT3D_CUDA'                #Reconstruction algorithm in astra
         self.ITER = 100                         #Number of iteration in reconstruction algorithm
-        self.resizeDataFactor = 0.5             #Optional resizing of the data for memory purposes
-        self.detPixelsy = int(0.5*self.detSizey)#Number of projection detector pixels after resizing the data in y direction
-        self.detPixelsx = int(0.5*self.detSizex)#Number of projection detector pixels after resizing the data in x direction
+        self.detPixelsy = 128                   #Number of detector pixels in y direction
+        self.detPixelsx = 128                   #Number of detector pixels in x direction
         
-        #Taken from CT settings file
-        self.DETPIXSIZE = 0.149600              #CT scan: detector pixel size
-        self.SOD = 441.396942                   #CT scan: source-object distance 
-        self.SDD = 698.000977                   #CT scan: source-detector distance
+        self.DETPIXSIZE = 1                     #CT scan: detector pixel size
+        self.SOD = 10000                        #CT scan: source-object distance 
+        self.SDD = 11000                        #CT scan: source-detector distance
         self.MAGN = self.SDD/self.SOD           #CT scan: magnification
         self.CONV = self.MAGN/self.DETPIXSIZE   #CT scan: conversion factor between length units and astra units
 
@@ -72,57 +69,30 @@ class DataProcessor(object):
     def CollectandSaveData(self, Instance):
     
         #Point to the folder corresponding to the CT scan instance
-        if(Instance <= 111):
-            DataPathInstance = DataPath + 'Object' + str(Instance) + '_Scan20W/'
-        else:
-            DataPathInstance = DataPath + 'ManyObject' + str(Instance-111) + '_Scan20W/'
+        DataPathInstance = DataPath + 'Object' + str(Instance) + '_Scan20W/'
     
         #Load all data filenames
         filenames = sorted(os.listdir(DataPathInstance))
 
         #Select only filenames corresponding to the data
-        substring = '.tif'
+        substring = '.tiff'
         files = [s for s in filenames if substring in s]
 
         #Find resolution
         resolution = tifffile.imread(DataPathInstance + files[0]).shape
         print("Detected image resolution:", resolution)
 
-        #Darkfield data files
-        darkfiles = [s for s in filenames if 'di' in s]
-        #Flatfield dat files
-        flatfiles = [s for s in filenames if 'io0' in s]
         #Main data files
         datafiles = [s for s in filenames if 'scan_0' in s]
 
         #Define array with zeros of (numberoffiles,res1,res2) and load the data and flatfields
-        Data = np.zeros((len(datafiles), resolution[0], resolution[1]))
+        Data = np.zeros((len(datafiles), resolution[-2], resolution[-1]))
 
-        #Load the darkfield images (and average)
-        DarkData = np.zeros((resolution[0], resolution[1]))
-        for f in darkfiles:
-            print(f)
-            DarkData += tifffile.imread(DataPathInstance + f)
-        DarkData = DarkData/len(darkfiles)
-            
-        #Load the flatfield images (and average)
-        FlatData = np.zeros((resolution[0], resolution[1]))
-        for f in flatfiles:
-            print(f)
-            FlatData += tifffile.imread(DataPathInstance + f)
-        FlatData = FlatData/len(flatfiles)
-
-        #Load the remaining CT images and save the results after dark- and flatfield correction
+        #Load the numerical CT images
         fileCounter = 0
-        print("Loading and correcting...")
+        print("Loading...")
         for f in tqdm(datafiles):
-            #Dark- and flatfield correction
-            Data[fileCounter, :, :] = np.log((FlatData - DarkData)/(tifffile.imread(DataPathInstance + f) - DarkData))
-            
-            #Resize the data and save the corrected radiographs
-            SaveData = cv2.resize(Data[fileCounter, :, :], dsize=(self.resizey, self.resizex), interpolation=cv2.INTER_CUBIC)
-            tifffile.imsave(DataSavePath + '/Instance' + str(Instance).zfill(3) + '/Instance' + str(Instance).zfill(3) + 'Angle{:05d}Data.tiff'.format(fileCounter), SaveData.astype(np.float32))
-                
+            Data[fileCounter, :, :] = tifffile.imread(DataPathInstance + f)               
             fileCounter += 1
         
         #Check for if the number of detected files is not correct
@@ -187,9 +157,6 @@ class DataProcessor(object):
     # Reconstructs the object from the CT data
     def CTReconstruction(self):
 
-        #Crop if needed in case of memory issues
-        print("Resizing data...")
-        self.CorData = scipy.ndimage.zoom(self.CorData, (self.resizeDataFactor, 1, self.resizeDataFactor)) #middle argument represents angles
         print("Data size:", self.CorData.shape)
 
         #Create volume geometry, angle distribution and projection geometry
@@ -199,7 +166,7 @@ class DataProcessor(object):
 
         #Create the sinogram and choose the reconstruction algorithm
         sinogram_id = astra.data3d.create('-sino', proj_geom, self.CorData)
-        
+
         rec_id = astra.data3d.create('-vol', vol_geom)
         cfg = astra.astra_dict(self.ALG)
         cfg['ReconstructionDataId'] = rec_id
@@ -231,11 +198,8 @@ class DataProcessor(object):
     #Segmentation function
     def Segmentation(self):
     
-        #Enlarge the reconstruction for proper segmentation
-        ALarger = scipy.ndimage.zoom(self.rec, 2, order = 1)
-
         #Segmentation by simple thresholding
-        self.ASeg = np.zeros_like(ALarger)
+        self.ASeg = np.zeros_like(self.rec)
         self.ASeg[ALarger > self.threshold3D] = 1
     
     
@@ -248,27 +212,33 @@ class DataProcessor(object):
         for ang in tqdm(range(0,self.Angles)):
             
             #Resize the ground truth projections, make these binary by additional segmenation and save the corrected radiographs
-            ASmaller = cv2.resize(MatProj[ang,:,:].astype(np.uint8), dsize=(self.resizey, self.resizex), interpolation=cv2.INTER_CUBIC)
-            ASegProj = np.zeros_like(ASmaller)
-            ASegProj[ASmaller >= self.projThresholdAfterresize] = 1
-            ASegProj[ASmaller < self.projThresholdAfterresize] = 0              
+            ASegProj = np.zeros_like(MatProj[ang,:,:])
+            ASegProj[MatProj[ang,:,:] >= self.projThresholdAfterresize] = 1
+            ASegProj[MatProj[ang,:,:] < self.projThresholdAfterresize] = 0              
             tifffile.imsave(GTSavePath + 'Instance' + str(Instance).zfill(3) + '/Instance' + str(Instance).zfill(3) + 'Angle' + str(ang).zfill(4) + '.tiff', ASegProj.astype(np.uint8))
     
     
     #Processes the entire dataset (data correction, CT reconstruction, segmentation, projection and processed data storage
     def ProcessData(self):
 
+        os.makedirs(RecPath, exist_ok=True)
+        os.makedirs(GTSavePath, exist_ok=True)   
+
         #Loop over the CT scans
         for Instance in range(InstanceBegin, InstanceEnd):
             print("--- CT scan instance", Instance, " ---")
         
             #Create the necessary target folders
-            os.makedirs(DataSavePath + '/Instance' + str(Instance).zfill(3) + '/', exist_ok=True)
-            os.makedirs(GTSavePath + '/Instance' + str(Instance).zfill(3) + '/', exist_ok=True)
+            os.makedirs(GTSavePath + 'Instance' + str(Instance).zfill(3) + '/', exist_ok=True)
         
             #Run the necessary steps
             self.CollectandSaveData(Instance)            
             self.CTReconstruction()
+            
+            #Save reconstruction
+            tifffile.imsave(RecPath + str(Instance).zfill(3) + 'reconstruction.tiff', self.rec)
+            
+            #Run the necessary steps (continued)
             self.Segmentation()
             self.ProjectSegmentation(Instance)
             
