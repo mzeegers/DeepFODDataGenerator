@@ -1,10 +1,10 @@
-#Ploting script for results from MSD and UNet networks tested on workflow generated data (many projection vs. one projection per scan)
+#Ploting script for results from MSD and UNet networks tested on workflow generated data (many projection vs. one projection per scan) for simulated CT data
 
-# This script plots the results of MSD and UNet networks on the workflow-generated (experimental) testing data
+# This script plots the results of MSD and UNet networks on the workflow-generated (numerical) testing data
 # The plots indicate the difference in results when all training examples are used in a CT rather than only one annotated example
-# The results are the plots files in the results/experimental/plots/ folder
+# The results are the plots files in the results/numerical/plots/ folder
 
-# The code assumes that the csv files with MSD and UNet network results on training data are available in the results/experimental/quantitative/ folder
+# The code assumes that the csv files with MSD and UNet network results on training data are available in the results/numerical/quantitative/ folder
 
 #Author,
 #   Mathé Zeegers, 
@@ -17,8 +17,8 @@ import numpy as np
 import os
 
 curPath = os.path.dirname(os.path.abspath(__file__))
-pathToQuant = '/../../../results/experimental/quantitative/'
-pathToPlots = '../../../results/experimental/plots/'
+pathToQuant = '/../../../results/numerical/quantitative/'
+pathToPlots = '../../../results/numerical/plots/'
 
 #Load relevant files
 SegAccUNet = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_UNet_AvgClassAcc.csv', delimiter=' ')
@@ -42,8 +42,8 @@ F1ScoreOneProjMSD = np.loadtxt(curPath + pathToQuant + 'RawResults_Paper_MSD_One
 Runs = SegAccMSD.shape[1]
 
 ##Additional data
-NumObjsOneProj = [2,3,4,5,7,10,15,20,30,40,50,60]
-NumObjs = [1,2,3,4,5,7,10,15,20,30,40,50,60]
+NumObjsOneProj = [2,3,4,5,7,10,15,20,30,40,50,60,100]
+NumObjs = [1,2,3,4,5,7,10,15,20,30,40,50,60,100]
 
 #Compute averages and stds
 SegAccAvgUNet = np.mean(SegAccUNet, axis = 1)
