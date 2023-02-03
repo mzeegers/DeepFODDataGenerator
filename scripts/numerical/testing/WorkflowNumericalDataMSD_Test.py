@@ -213,16 +213,6 @@ NetworkPath = Prefix + '/MSD/FewFOs/'
 
 SegAcc, F1ScoreAcc, Specialmetric, FPmetric = computeNetworkResults(NetworkPath, Runs, NumObjs, flsin)
 
-#Compute means and standard deviations of all measures
-SegAccAvg = np.mean(SegAcc, axis = 1)
-F1ScoreAccAvg = np.mean(F1ScoreAcc, axis = 1)
-SpecialmetricAvg = np.mean(Specialmetric, axis = 1)
-FPmetricAvg = np.mean(FPmetric, axis = 1)
-SegAccStd = np.std(SegAcc, axis = 1)
-F1ScoreAccStd = np.std(F1ScoreAcc, axis = 1)
-SpecialmetricStd = np.std(Specialmetric, axis = 1)
-FPmetricStd = np.std(FPmetric, axis = 1)
-
 print(SegAcc)
 print(F1ScoreAcc)
 print(Specialmetric)
@@ -238,16 +228,6 @@ Runs = [0,1,2,3,4]
 NetworkPath = Prefix + '/MSD/FewFOsOneRadiograph/'
 
 SegAccOneProj, F1ScoreAccOneProj, SpecialmetricOneProj, FPmetricOneProj = computeNetworkResults(NetworkPath, Runs, NumObjsOneProj, flsin)
-
-#Compute means and standard deviations of all measures
-SegAccAvgOneProj = np.mean(SegAccOneProj, axis = 1)
-F1ScoreAccAvgOneProj = np.mean(F1ScoreAccOneProj, axis = 1)
-SpecialmetricAvgOneProj = np.mean(SpecialmetricOneProj, axis = 1)
-FPmetricAvgOneProj = np.mean(FPmetricOneProj, axis = 1)
-SegAccStdOneProj = np.std(SegAccOneProj, axis = 1)
-F1ScoreAccStdOneProj = np.std(F1ScoreAccOneProj, axis = 1)
-SpecialmetricStdOneProj = np.std(SpecialmetricOneProj, axis = 1)
-FPmetricStdOneProj = np.std(FPmetricOneProj, axis = 1)
 
 print(SegAccOneProj)
 print(F1ScoreAccOneProj)
