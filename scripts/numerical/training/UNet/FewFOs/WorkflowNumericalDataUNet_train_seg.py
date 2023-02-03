@@ -8,9 +8,9 @@
 # The log files from MSD training indicating which folder instances are used should be copied into the folder before running this script
 
 # Code assumes training data to be saved in the following way
-# - /data/Numerical/ProjectionData/Instance001/
-# -           |                   /Instance002/
-# -           |                    ...
+# - /data/Numerical/ProjectionDataTrain/Instance001/
+# -           |                        /Instance002/
+# -           |                             ...
 # -           --/GTProjectionsPerfectTrain/Instance001/
 # -                                       /Instance002/ 
 # -                                             ...
@@ -44,7 +44,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 DataPath = '../../../../../data/Numerical/' #Location of data and GT
-Dataset = 'ProjectionData' #Selected data folder and printed folder in network name
+Dataset = 'ProjectionDataTrain' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'GTProjectionsPerfectTrain' #Selected GT folder and printed folder in network name
 targetLabels = 2 #Number of different labels in GT

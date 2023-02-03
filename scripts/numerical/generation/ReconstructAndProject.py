@@ -3,7 +3,7 @@
 #This script carries out the workflow for reconstruction of the artificially generated data, as well as segmentation and forward projections
 #The results are the projected ground truth locations for each artificial CT scan
 #The code assumes that PhantomGeneratorTrainandTest.py, PhantomProjectorTrainandTest.py and SpectralDataGenerator.py are carried out first
-# and that the projection data is available in the /data/Numerical/ProjectionData/ folder
+# and that the projection data is available in the /data/Numerical/ProjectionDataTrain/ folder
 
 #NOTE: This code is only needed for subsequent comparison of the 'perfect' ground truth with the workflow-generated ground truth, and not for training with the neural networks (see paper section 4.8. for explanation)
  
@@ -31,7 +31,7 @@ from tqdm import tqdm
 np.set_printoptions(threshold=np.inf)
 
 #Folders containing the CT data and folders to write results to
-DataPath = '../../../data/Numerical/ProjectionData/'
+DataPath = '../../../data/Numerical/ProjectionDataTrain/'
 RecPath = '../../../data/Numerical/Reconstructions/'
 GTSavePath = '../../../data/Numerical/GTProjectionsTrain/'
 

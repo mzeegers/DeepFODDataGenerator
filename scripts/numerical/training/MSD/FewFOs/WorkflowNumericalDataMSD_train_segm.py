@@ -7,14 +7,14 @@
 # The ratio between training and validation data is hardcoded to 9:1 (but can relatively easily be changed)
 
 # Code assumes training data to be saved in the following way
-# - /data/Numerical/ProjectionData/Instance001/
-# -           |                   /Instance002/
-# -           |                    ...
+# - /data/Numerical/ProjectionDataTrain/Instance001/
+# -           |                        /Instance002/
+# -           |                             ...
 # -           --/GTProjectionsPerfectTrain/Instance001/
 # -                                       /Instance002/ 
 # -                                             ...
 
-# Note: The subfolders in ProjectionData and GTProjectionsPerfectTrain should have identical names
+# Note: The subfolders in ProjectionDataTrain and GTProjectionsPerfectTrain should have identical names
 
 
 #Authors,
@@ -35,7 +35,7 @@ import tifffile
 layers = 100
 dilations = 10
 DataPath = '../../../../../data/Numerical/' #Location of data and GT
-Dataset = 'ProjectionData' #Selected data folder and printed folder in network name
+Dataset = 'ProjectionDataTrain' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'GTProjectionsPerfectTrain' #Selected GT folder and printed folder in network name
 targetLabels = 2 #Number of different labels in GT
