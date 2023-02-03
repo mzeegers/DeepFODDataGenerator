@@ -5,7 +5,7 @@
 # The code assumes that the (experimental) training to be available (see below)
 # If not done beforehand, run the ReconstructAndProject script first (located in the scripts/experimental/generation folder) to create it
 # The ratio between training and validation data is the same as training with MSD (needs to be run first)
-# The log files from MSD training indicating which folder instances and files are used should be copied into the fodler before running this script
+# The log files from MSD training indicating which folder instances and files are used should be copied into the folder before running this script
 
 # Code assumes training data to be saved in the following way
 # - /data/TrainingDataExperimental/Instance001/
@@ -46,7 +46,7 @@ DataPath = '../../../../../data/' #Location of data and GT
 DatasetName = 'TrainingDataExperimental' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name
-targetLabels = 2 #Number of differnent labels in GT
+targetLabels = 2 #Number of different labels in GT
 NoFO = [9,14,26,38,50,59] #CT scans without foreign objects - not used for training
 
 #Get script arguments
@@ -78,7 +78,7 @@ with open('TrainSettingsFilesTrainingNumObj' + str(NumObj) + 'Run' + str(Run) +'
     for line in f:
         filename = line[0:-1]
         flsin = flsin + [filename]
-        filenamegt = filename.replace("Data.tiff", ".tiff").replace("TrainingDataExperimental","TrainingDataExperimentalGT").replace("Angle0","Angle")
+        filenamegt = filename.replace("Data.tiff", ".tiff").replace(DatasetName, GTName).replace("Angle0","Angle")
         flstg = flstg + [filenamegt]
 
 print("All files for training")
@@ -90,13 +90,15 @@ DataListTrain = flsin
 GTListTrain = flstg
 
 #Construct the validation set (no data augmentation)
+flsin = []
+flstg = []
 with open('TrainSettingsFilesValidationNumObj' + str(NumObj) + 'Run' + str(Run) +'.txt', 'r') as f:
     line = f.readline()
     for line in f:
         filename = line[0:-1]
-        flsin2 = flsin2 + [filename]
-        filenamegt = filename.replace("Data.tiff", ".tiff").replace("TrainingDataExperimental","TrainingDataExperimentalGT").replace("Angle0","Angle")
-        flstg2 = flstg2 + [filenamegt]
+        flsin = flsin + [filename]
+        filenamegt = filename.replace("Data.tiff", ".tiff").replace(DatasetName, GTName).replace("Angle0","Angle")
+        flstg = flstg + [filenamegt]
 
 print("All files for validation")
 print(flsin)
@@ -269,7 +271,7 @@ def train_model(model, optimizer, scheduler, num_epochs=25):
 
             since = time.time()
 
-            # ach epoch has a training and validation phase
+            #Each epoch has a training and validation phase
             for phase in ['train', 'val']:
 
                 metrics = defaultdict(float)
@@ -320,7 +322,7 @@ def train_model(model, optimizer, scheduler, num_epochs=25):
                             cnt += 1
                             inputs = inputs.to(device)
                             pred = model(inputs)
-                            # The loss functions include the sigmoid function.
+                            #The loss functions include the sigmoid function.
                             pred = torch.sigmoid(pred)
                             pred = pred.data.cpu().numpy()
                             tifffile.imsave('UNetsegm_params' + SettingsExt + '_PredictedExample.tiff', pred[0,:,:,:].astype(np.float32))
@@ -337,7 +339,7 @@ def train_model(model, optimizer, scheduler, num_epochs=25):
 
     print('Best val loss: {:4f}'.format(best_loss))
 
-    #Get load best model weights
+    #Get best model weights
     model.load_state_dict(best_model_wts)
     return model
 

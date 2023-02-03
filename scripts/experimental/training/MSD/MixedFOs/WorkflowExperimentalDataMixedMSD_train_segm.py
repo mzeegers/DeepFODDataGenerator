@@ -37,7 +37,7 @@ DataPath = '../../../../../data/' #Location of data and GT
 Dataset = 'TrainingDataExperimental' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'TrainingDataExperimentalGT' #Selected GT folder and printed folder in network name
-targetLabels = 2 #Number of differnent labels in GT
+targetLabels = 2 #Number of different labels in GT
 NoFO = [9,14] #CT scans without foreign objects - not used for training (only for first 20 CT scans)
 NoFO2 = []
 

@@ -3,7 +3,7 @@
 # This script carries out the MSD network training using the workflow-generated (numerical) training data with one radiograph per object
 # The results are the networks and log files generated from the MSD code
 # The code assumes that the (numerical) training to be available (see below)
-# If not done beforehand, run the ReconstructAndProject script first (located in the scripts/numerical/generation folder) to create it
+# If not done beforehand, run the PhantomGeneratorTrainandTest, PhantomProjectorTrainandTest and SpectralDataGenerator script first (located in the scripts/numerical/generation folder) to create it
 # The ratio between training and validation data is hardcoded to 9:1 (but can relatively easily be changed)
 
 # Code assumes training data to be saved in the following way
@@ -38,7 +38,7 @@ DataPath = '../../../../../data/Numerical/' #Location of data and GT
 Dataset = 'ProjectionData' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'GTProjectionsPerfectTrain' #Selected GT folder and printed folder in network name
-targetLabels = 2 #Number of differnent labels in GT
+targetLabels = 2 #Number of different labels in GT
 
 
 #Get script arguments

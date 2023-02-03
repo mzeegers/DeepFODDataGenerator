@@ -1,4 +1,4 @@
 #!/bin/bash
 #Scripting file for running multiple training instances with MSD. If there are more CUDA cores on your machine the device IDs can be changed.
 #General usage: CUDA_VISIBLE_DEVICES=<CUDA DEVICE ID> timeout <hours>h python WorkflowNumericalDataMSD_train_segm.py <NumberOfObjects> <Run>
-CUDA_VISIBLE_DEVICES=0 timeout 9h python WorkflowNumericalDataMSD_train_segm.py 2 0
+CUDA_VISIBLE_DEVICES=0 timeout 9h python WorkflowNumericalDataMSD_train_segm.py 1 0
