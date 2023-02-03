@@ -158,8 +158,8 @@ def computeNetworkResults(NetworkPath, Runs, NumbObjs, flsin):
             print("Run", Run, "NumObj", NumObj)
             
             #Load the corresponding trained network
-            subname2 = 'TrainingDataExperimentalTrainingDataExperimentalGT' + RunString + 'NumObj' + str(NumObj)
-            FullNetworkPath = NetworkPath + 'UNetsegm_params_' + subname2 + '.pth'
+            subname = 'TrainingDataExperimentalTrainingDataExperimentalGT' + RunString + 'NumObj' + str(NumObj)
+            FullNetworkPath = NetworkPath + 'UNetsegm_params_' + subname + '.pth'
             device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
             print(device)
             num_class = targetLabels
@@ -373,7 +373,7 @@ SpecialmetricStdOneProj = np.std(SpecialmetricOneProj, axis = 1)
 FPmetricStdOneProj = np.std(FPmetricOneProj, axis = 1)
 
 print(SegAccOneProj)
-print(F1ScoreAccAvgOneProj)
+print(F1ScoreAccOneProj)
 print(SpecialmetricOneProj)
 print(FPmetricOneProj)
 
