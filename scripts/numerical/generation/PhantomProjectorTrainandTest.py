@@ -85,7 +85,6 @@ class Projector(object):
         print("Labels in segmentation to project:", GroundTruth)  
         ProjSeg = np.zeros_like(self.Ph)
         for i in GroundTruth:
-            ProjSeg[self.Ph != i] = 0
             ProjSeg[self.Ph == i] = 1
 
         #Create the projections
@@ -102,7 +101,7 @@ class Projector(object):
         os.makedirs(path + '/MaterialProjectionsTest/', exist_ok=True)
         os.makedirs(path + '/GTProjectionsPerfectTest/', exist_ok=True)
                 
-        for Instance in range(100, InstanceEnd):
+        for Instance in range(InstanceBegin, InstanceEnd):
             print("--- Object instance", Instance, " ---")
 
             if (Instance < 100):

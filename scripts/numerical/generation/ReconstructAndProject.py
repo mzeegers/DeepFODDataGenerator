@@ -69,7 +69,7 @@ class DataProcessor(object):
     def CollectandSaveData(self, Instance):
     
         #Point to the folder corresponding to the CT scan instance
-        DataPathInstance = DataPath + 'Object' + str(Instance) + '_Scan20W/'
+        DataPathInstance = DataPath + 'Instance' + str(Instance).zfill(3) + '/'
     
         #Load all data filenames
         filenames = sorted(os.listdir(DataPathInstance))
@@ -77,21 +77,20 @@ class DataProcessor(object):
         #Select only filenames corresponding to the data
         substring = '.tiff'
         files = [s for s in filenames if substring in s]
+        print(DataPathInstance)
+        print(files)
 
         #Find resolution
         resolution = tifffile.imread(DataPathInstance + files[0]).shape
         print("Detected image resolution:", resolution)
 
-        #Main data files
-        datafiles = [s for s in filenames if 'scan_0' in s]
-
         #Define array with zeros of (numberoffiles,res1,res2) and load the data and flatfields
-        Data = np.zeros((len(datafiles), resolution[-2], resolution[-1]))
+        Data = np.zeros((len(files), resolution[-2], resolution[-1]))
 
         #Load the numerical CT images
         fileCounter = 0
         print("Loading...")
-        for f in tqdm(datafiles):
+        for f in tqdm(files):
             Data[fileCounter, :, :] = tifffile.imread(DataPathInstance + f)               
             fileCounter += 1
         
@@ -114,7 +113,7 @@ class DataProcessor(object):
         #Create volume geometry, angle distribution and projection geometry
         vol_geom = astra.create_vol_geom(ProjSeg.shape)   
         angles = np.linspace(0,360*np.pi/180, self.Angles, False)
-        proj_geom = astra.create_proj_geom('cone', self.DETPIXSIZE*self.CONV, self.DETPIXSIZE*self.CONV, 760, 956, angles, self.SOD*self.CONV, (self.SDD-self.SOD)*self.CONV)
+        proj_geom = astra.create_proj_geom('cone', self.DETPIXSIZE*self.CONV, self.DETPIXSIZE*self.CONV, self.detPixelsy, self.detPixelsx, angles, self.SOD*self.CONV, (self.SDD-self.SOD)*self.CONV)
 
         #Carry out the projection
         proj_id, proj_data = astra.create_sino3d_gpu(ProjSeg, proj_geom, vol_geom)
@@ -200,7 +199,7 @@ class DataProcessor(object):
     
         #Segmentation by simple thresholding
         self.ASeg = np.zeros_like(self.rec)
-        self.ASeg[ALarger > self.threshold3D] = 1
+        self.ASeg[self.rec > self.threshold3D] = 1
     
     
     #Project the 3D segmentation back onto the detector and save the ground truth projections

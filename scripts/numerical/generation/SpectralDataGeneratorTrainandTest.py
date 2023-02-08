@@ -23,6 +23,8 @@ NIST = False                                            #If True, attenuation da
 path = '../../../data/Numerical/'                       #Output folder
 FFAverages = 20                                         #Number of flatfield images to correct the data with
 Noise = True
+InstanceBegin = 0
+InstanceEnd = 500
 
 
 ### Import operations to speed up computations 
@@ -277,20 +279,19 @@ def main():
     os.makedirs(path + '/ProjectionDataTest/', exist_ok=True)
 
     #Loop over all phantom instances
-    for Instance in range(0,100):
+    for Instance in range(InstanceBegin,InstanceEnd):
 
-        #Set correct save folder and set random seed (for when noise is applied)
+        #Set correct save folder, set random seed (for when noise is applied) and create the output directory for the spectral projections
         if Instance < 100:
             fullpath = path + '/ProjectionDataTrain'
             np.random.seed(123+Instance)
+            os.makedirs(fullpath + '/Instance' + str(Instance).zfill(3) + '/', exist_ok=True)
         else:
-            self.PathToProjs = '../../../data/Numerical/MaterialProjectionsTest/'
+            PG.PathToProjs = '../../../data/Numerical/MaterialProjectionsTest/'
             fullpath = path + '/ProjectionDataTest'
             np.random.seed(123+Instance-100)
+            os.makedirs(fullpath + '/Instance' + str(Instance-100).zfill(3) + '/', exist_ok=True)
 
-        #Create the output directory for the spectral projections
-        os.makedirs(fullpath + '/Instance' + str(Instance).zfill(3) + '/', exist_ok=True)
-       
         #Apply noise to the flatfield image
         if(Noise):
             FFSum = np.random.poisson(FFclean)
@@ -300,14 +301,17 @@ def main():
 
         #List the projeciton angles
         if Instance < 100:
-            Angles = len(sorted(os.listdir(PG.PathToProjs + 'Instance' + str(Instance).zfill(3) + '/')))
+            Angles = range(0, len(sorted(os.listdir(PG.PathToProjs + 'Instance' + str(Instance).zfill(3) + '/'))))
         else:
-            Angles = [int(x[-9:-5]) for x in sorted(os.listdir(Sp.PathToProjs + 'Instance' + str(i).zfill(3) + '/'))]
+            Angles = [int(x[-9:-5]) for x in sorted(os.listdir(PG.PathToProjs + 'Instance' + str(Instance-100).zfill(3) + '/'))]
         #Loop over the angles
-        for ang in range(0, Angles):
+        for ang in Angles:
             print("--- Object instance", Instance, "Angle", ang, "---")
             #Retrieve the spectral projection
-            Res = PG.MakeSpectralProjection(Instance, ang)
+            if Instance < 100:
+                Res = PG.MakeSpectralProjection(Instance, ang)
+            else:
+                Res = PG.MakeSpectralProjection(Instance-100, ang)
             #Apply noise to the spectral projection
             if(Noise):
                 Res = np.random.poisson(Res)
@@ -316,11 +320,14 @@ def main():
             #Remove possibly infinite values resulting from flatfield correction
             Proj[~np.isfinite(Proj)] = 0  
             #Save the material projections to the selected folders
-            tifffile.imsave(fullpath + '/Instance' + str(Instance).zfill(3) + '/Instance' + str(Instance).zfill(3) + 'Angle{:05d}Data.tiff'.format(ang), Proj.astype(np.float32))
+            if Instance < 100:
+                tifffile.imsave(fullpath + '/Instance' + str(Instance).zfill(3) + '/Instance' + str(Instance).zfill(3) + 'Angle{:05d}Data.tiff'.format(ang), Proj.astype(np.float32))
+            else:
+                tifffile.imsave(fullpath + '/Instance' + str(Instance-100).zfill(3) + '/Instance' + str(Instance-100).zfill(3) + 'Angle{:05d}Data.tiff'.format(ang), Proj.astype(np.float32))
             print("Projection created and saved.")
         
         #Log the settings for this instance
-        with open(path + '/materialsettingsInst' + str(Instance) + '.txt', 'w') as f:
+        with open(fullpath + '/materialsettingsInst' + str(Instance) + '.txt', 'w') as f:
             f.write("Noise: %s\n" % Noise) 
             f.write("FFAverages: %s\n" % FFAverages) 
             f.write("MinEnergy: %s\n" % PG.MinEnergy) 
