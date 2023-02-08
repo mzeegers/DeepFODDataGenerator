@@ -277,7 +277,7 @@ def main():
     os.makedirs(path + '/ProjectionDataTest/', exist_ok=True)
 
     #Loop over all phantom instances
-    for Instance in range(1,100):
+    for Instance in range(0,100):
 
         #Set correct save folder and set random seed (for when noise is applied)
         if Instance < 100:
