@@ -44,7 +44,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 DataPath = '../../../../../data/Numerical/' #Location of data and GT
-Dataset = 'ProjectionDataTrain' #Selected data folder and printed folder in network name
+DatasetName = 'ProjectionDataTrain' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'GTProjectionsPerfectTrain' #Selected GT folder and printed folder in network name
 targetLabels = 2 #Number of different labels in GT
@@ -74,7 +74,7 @@ GT = GTFolder + GTName
 ## Create list of files for training and validation set
 flsinFolders = []
 flstgFolders = []
-flsinFoldersPossible = sorted([d for d in os.listdir(DataPath + Dataset + '/') if os.path.isdir(os.path.join(DataPath + Dataset + '/', d))])
+flsinFoldersPossible = sorted([d for d in os.listdir(DataPath + DatasetName + '/') if os.path.isdir(os.path.join(DataPath + DatasetName + '/', d))])
 flstgFoldersPossible = sorted([d for d in os.listdir(DataPath + GT + '/') if os.path.isdir(os.path.join(DataPath + GT + '/', d))])
 
 #Take the same folders as from MSD training (NOTE: the log files from the MSD training have to be copied in this folder)

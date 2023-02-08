@@ -44,7 +44,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 DataPath = '../../../../../data/Numerical/' #Location of data and GT
-Dataset = 'ProjectionDataTrain' #Selected data folder and printed folder in network name
+DatasetName = 'ProjectionDataTrain' #Selected data folder and printed folder in network name
 GTFolder = '' #Change if path in Datapath folder is deeper than GTName below
 GTName = 'GTProjectionsPerfectTrain' #Selected GT folder and printed folder in network name
 targetLabels = 2 #Number of different labels in GT

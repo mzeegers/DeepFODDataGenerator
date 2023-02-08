@@ -74,9 +74,9 @@ GT = GTFolder + GTName
 #Select all instances and names of folders containing CT scan data (with mixed number of foreign objects)
 flsinFolders = []
 flstgFolders = []
-flsinFoldersPossible = sorted(os.listdir(DataPath + Dataset + '/'))[0:20+len(NoFO)]
+flsinFoldersPossible = sorted(os.listdir(DataPath + DatasetName + '/'))[0:20+len(NoFO)]
 flstgFoldersPossible = sorted(os.listdir(DataPath + GT + '/'))[0:20+len(NoFO)]
-flsinFoldersPossible2 = sorted(os.listdir(DataPath + Dataset + '/'))[111:131+len(NoFO2)]
+flsinFoldersPossible2 = sorted(os.listdir(DataPath + DatasetName + '/'))[111:131+len(NoFO2)]
 flstgFoldersPossible2 = sorted(os.listdir(DataPath + GT + '/'))[111:131+len(NoFO2)]
     
 #Take the same folders as from MSD training (NOTE: the log files from the MSD training have to be copied in this folder)

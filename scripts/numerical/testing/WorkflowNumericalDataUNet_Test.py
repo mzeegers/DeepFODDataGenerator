@@ -44,6 +44,7 @@ import torch.optim as optim
 
 #Path to generated quantitative to save
 pathToQuant = '/../../../results/numerical/quantitative'
+targetLabels = 2
 
 #Function to produce a labelled image from an image of components
 def LabelComponents(img):
@@ -136,7 +137,7 @@ Prefix = '../training/'
 curPath = os.path.dirname(os.path.abspath(__file__))
 
 
-def computeNetworkResults(NetworkPath, Runs, NumbObjs, flsin):
+def computeNetworkResults(NetworkPath, Runs, NumObjs, flsin):
 
     SegAcc = np.zeros((len(NumObjs),len(Runs)))
     F1ScoreAcc = np.zeros((len(NumObjs),len(Runs)))
