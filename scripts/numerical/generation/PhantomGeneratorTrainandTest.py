@@ -23,7 +23,7 @@ n = 128 #Size of the entire phantom space. Note: many other values are hard-code
 Instances = 500 #Number of generated objects
 
 #Set output path of the generated 3D volumes
-outputPath = '../../../data/Numerical/' #/export/scratch3/zeegers/AutomatedFODProjectSmallManyTouchNew/'
+outputPath = '../../../data/Numerical/'
 os.makedirs(outputPath + 'Objects3DTrain/', exist_ok=True)
 if(Instances >= 100):
     os.makedirs(outputPath + 'Objects3DTrain/', exist_ok=True)

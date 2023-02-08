@@ -24,7 +24,7 @@ import tifffile
 
 np.set_printoptions(threshold=np.inf)
 
-path = '../../../data/Numerical/' #'/export/scratch3/zeegers/AutomatedFODProjectSmallManyTouchNew/'
+path = '../../../data/Numerical/'
 
 InstanceBegin = 0
 InstanceEnd = 500
