@@ -37,6 +37,7 @@ import tifffile
 
 #Path to generated quantitative to save
 pathToQuant = '/../../../results/experimental/quantitative'
+targetLabels = 2
 
 #Function to produce a labelled image from an image of components
 def LabelComponents(img):
@@ -247,7 +248,7 @@ NumObjsMix = [1,2,3,4,5,7,10,15,20,30,40]
 Runs = [0,1,2,3,4]
 NetworkPath = Prefix + '/MSD/MixedFOs/'
 
-SegAccMix, F1ScoreAccMix, SpecialmetricMix, FPmetricMix = computeNetworkResults(NetworkPath, Runs, NumbObjsMix, flsin)
+SegAccMix, F1ScoreAccMix, SpecialmetricMix, FPmetricMix = computeNetworkResults(NetworkPath, Runs, NumObjsMix, flsin)
 
 print(SegAccMix)
 print(F1ScoreAccMix)
