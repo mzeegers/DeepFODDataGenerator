@@ -7,6 +7,7 @@
 ## Introduction
 
 DeepFODDataGenerator is a Python package for easy generation of training data to apply deep learning for detection of (foreign) objects detection on X-ray projections. The generator follows a workflow of creating reconstructions from CT scans of training objects, and subsequently applying segmentation and virtual projections. The results are ground truth locations of the foreign objects on the X-ray projections from the CT scan, without having to manually annotate each of these.  
+
 This package provides scripts for applying this workflow for any X-ray object detection method, given that there are CT objects of training objects available. Additionally, the package provides scripts for complete reproduction of the experiments in the associated paper titled '[A tomographic workflow to enable deep learning for X-ray based foreign object detection](https://www.sciencedirect.com/science/article/pii/S0957417422010429)', in which the workflow is demonstrated and analyzed through a series of experiments with laboratory CT data and numerical data.  
 
 
