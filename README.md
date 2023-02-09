@@ -29,47 +29,70 @@ csv, cv2, matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
 *Optional*:
 cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and examining intermediate results),
 
+The code has been tested on Fedora 36, with Intel(R) Core(TM) i7-7700K CPU, GeForce GTX 1070 GPU, CUDA version 11.8 and CUDA toolkit 10.1.243.
+
 Also, for running the workflow with experimental data, it is required to download the X-ray CT scans dataset available at [Zenodo](https://zenodo.org/record/5866228) and store these in the data/CTData folder.
 
-It is recommended to have storage space of at least 500 GB to run the full experimental reproduction of the results in the paper. 
+It is recommended to have storage space of at least 500 GB to run the full experimental reproduction of the results in the paper. For your own experiments derived from this code, this amount of storage space is of course not needed.
 
 ## Scripts
 
 The script folder is organized in the following manner:
 
-        /scripts/experimental/generation........................./ReconstructAndProject.py
-
-                             /training../MSD./FewFOs............./WorkflowExperimentalDataMSD_train_segm.py
-                                             /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographMSD_train_segm.py
-                                             /ManyFOs............/WorkflowExperimentalDataManyFOMSD_train_segm.py
-                                             /MixedFOs.........../WorkflowExperimentalDataMixedMSD_train_segm.py
-                                        /UNet/FewFOs............./WorkflowExperimentalDataUNet_train_segm.py
-                                             /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographUNet_train_segm.py
-                                             /ManyFOs............/WorkflowExperimentalDataManyFOUNet_train_segm.py
-                                             /MixedFOs.........../WorkflowExperimentalDataMixedUNet_train_segm.py
-                                            
-                             /testing............................/WorkflowExperimentalDataMSD_Test.py
-                                                                 /WorkflowExperimentalDataUNet_Test.py
-                                                                
-                             /plotting.........................../PlotAllResultsDiffFOamounts.py
-                                      .........................../PlotAllResultsManyvsOneProj.py
-
-                /numerical.../generation........................./PhantomGeneratorTrainandTest.py
-                                                                 /PhantomProjectorTrainandTest.py
-                                                                 /SpectralDataGeneratorTrainandTest.py
-                                                                 /ReconstructAndProject.py
-                                                                 /CompareSegmentationsandGT.py
-               
-                             /training../MSD./FewFOs............./WorkflowNumericalDataMSD_train_segm.py
-                                             /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographMSD_train_segm.py
-                                        /UNet/FewFOs............./WorkflowNumericalDataUNet_train_segm.py
-                                             /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographUNet_train_segm.py
-                                            
-                             /testing............................/WorkflowNumericalDataMSD_Test.py
-                                                                 /WorkflowNumericalDataUNet_Test.py
-                                                                
-                             /plotting.........................../PlotAllResultsManyvsOneProj.py
-       
+```
+├── scripts
+    ├── experimental
+    │   ├── generation
+    │   │   └────────── ReconstructAndProject.py
+    |   ├── training
+    |   │   ├── MSD
+    |   │   │   ├── FewFOs
+    |   │   │   │   └── WorkflowExperimentalDataMSD_train_segm.py
+    |   │   │   ├── FewFOsOneRadiograph
+    |   │   │   │   └── WorkflowExperimentalDataOneRadiographMSD_train_segm.py
+    |   │   │   ├── ManyFOs
+    |   │   │   │   └── WorkflowExperimentalDataManyFOMSD_train_segm.py
+    |   │   │   └── MixedFOs
+    |   │   │       └── WorkflowExperimentalDataMixedMSD_train_segm.py
+    |   │   └── UNet
+    |   │       ├── FewFOs
+    |   │       │   └── WorkflowExperimentalDataUNet_train_segm.py
+    |   │       ├── FewFOsOneRadiograph
+    |   │       │   └── WorkflowExperimentalDataOneRadiographUNet_train_segm.py
+    |   │       ├── ManyFOs
+    |   │       │   └── WorkflowExperimentalDataManyFOUNet_train_segm.py
+    |   │       └── MixedFOs
+    |   │           └── WorkflowExperimentalDataMixedUNet_train_segm.py
+    |   ├── testing
+    |   |   ├────────── WorkflowExperimentalDataMSD_Test.py
+    |   |   └────────── WorkflowExperimentalDataUNet_Test.py
+    |   └── plotting
+    |       ├────────── PlotAllResultsDiffFOamounts.py
+    |       └────────── PlotAllResultsManyvsOneProj.py
+    └── numerical
+        ├── generation
+        |   ├────────── PhantomGeneratorTrainandTest.py
+        |   ├────────── PhantomProjectorTrainandTest.py
+        |   ├────────── SpectralDataGeneratorTrainandTest.py
+        |   ├────────── ReconstructAndProject.py
+        |   └────────── CompareSegmentationsandGT.py
+        ├── training
+        |   ├── MSD
+        |   |   ├── FewFOs
+        |   |   |   └── WorkflowNumericalDataMSD_train_segm.py
+        |   |   └── FewFOsOneRadiograph
+        |   |       └── WorkflowNumericalDataOneRadiographMSD_train_segm.py
+        |   └── UNet
+        |       ├── FewFOs
+        |       |   └── WorkflowNumericalDataUNet_train_segm.py
+        |       └── FewFOsOneRadiograph
+        |           └── WorkflowNumericalDataOneRadiographUNet_train_segm.py
+        ├── testing
+        |   ├────────── WorkflowNumericalDataMSD_Test.py
+        |   └────────── WorkflowNumericalDataUNet_Test.py
+        └── plotting
+            └────────── PlotAllResultsManyvsOneProj.py
+```    
 
 For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*).
 
