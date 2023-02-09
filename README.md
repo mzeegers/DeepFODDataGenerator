@@ -31,7 +31,7 @@ cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and exa
 
 Also, for running the workflow with experimental data, it is required to download the X-ray CT scans dataset available at [Zenodo](https://zenodo.org/record/5866228) and store these in the data/CTData folder.
 
-It is recommended to have storage space of 500 GB to run the full experimental reproduction of the results in the paper. 
+It is recommended to have storage space of at least 500 GB to run the full experimental reproduction of the results in the paper. 
 
 ## Scripts
 
@@ -71,7 +71,7 @@ The script folder is organized in the following manner:
                              /plotting.........................../PlotAllResultsManyvsOneProj.py
        
 
-For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*.
+For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*).
 
 To reproduce the various results in the paper follow the following scripts:
 - **Section 4.5:** Run all scripts in the scripts/expermental/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
