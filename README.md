@@ -29,7 +29,7 @@ csv, cv2 (OpenCV), matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
 *Optional*:
 cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and examining intermediate results),
 
-The code has been tested on Fedora 36, with Intel(R) Core(TM) i7-7700K CPU, GeForce GTX 1070 GPU, CUDA version 11.8 and CUDA toolkit 10.1.243.
+The code has been tested with Python version 3.8.1 on Fedora 36, with Intel(R) Core(TM) i7-7700K CPU, GeForce GTX 1070 GPU, CUDA version 11.8 and CUDA toolkit 10.1.243.
 
 Also, for running the workflow with experimental data, it is required to download the X-ray CT scans dataset available at [Zenodo](https://zenodo.org/record/5866228) and store these in the data/CTData folder.
 
