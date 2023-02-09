@@ -27,12 +27,59 @@ Minor (but essential):
 csv, cv2, matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
 
 *Optional*:
-physdata.xray, pyqtgraph (useful for plotting and examining intermediate results)
+cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and examining intermediate results),
 
+Also, for running the workflow with experimental data, it is required to download the X-ray CT scans dataset available at [Zenodo](https://zenodo.org/record/5866228) and store these in the data/CTData folder.
+
+It is recommended to have storage space of 500 GB to run the full experimental reproduction of the results in the paper. 
 
 ## Scripts
 
+The script folder is organized in the following manner:
 
+scripts/experimental/generation........................./ReconstructAndProject.py
+
+                    /training../MSD./FewFOs............./WorkflowExperimentalDataMSD_train_segm.py
+                                    /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographMSD_train_segm.py
+                                    /ManyFOs............/WorkflowExperimentalDataManyFOMSD_train_segm.py
+                                    /MixedFOs.........../WorkflowExperimentalDataMixedMSD_train_segm.py
+                               /UNet/FewFOs............./WorkflowExperimentalDataUNet_train_segm.py
+                                    /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographUNet_train_segm.py
+                                    /ManyFOs............/WorkflowExperimentalDataManyFOUNet_train_segm.py
+                                    /MixedFOs.........../WorkflowExperimentalDataMixedUNet_train_segm.py
+                                    
+                    /testing............................/WorkflowExperimentalDataMSD_Test.py
+                                                        /WorkflowExperimentalDataUNet_Test.py
+                                                        
+                    /plotting.........................../PlotAllResultsDiffFOamounts.py
+                             .........................../PlotAllResultsManyvsOneProj.py
+
+       /numerical.../generation........................./PhantomGeneratorTrainandTest.py
+                                                        /PhantomProjectorTrainandTest.py
+                                                        /SpectralDataGeneratorTrainandTest.py
+                                                        /ReconstructAndProject.py
+                                                        /CompareSegmentationsandGT.py
+       
+                    /training../MSD./FewFOs............./WorkflowNumericalDataMSD_train_segm.py
+                                    /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographMSD_train_segm.py
+                               /UNet/FewFOs............./WorkflowNumericalDataUNet_train_segm.py
+                                    /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographUNet_train_segm.py
+                                    
+                    /testing............................/WorkflowNumericalDataMSD_Test.py
+                                                        /WorkflowNumericalDataUNet_Test.py
+                                                        
+                    /plotting.........................../PlotAllResultsManyvsOneProj.py
+       
+
+For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*.
+
+To reproduce the various results in the paper follow the following scripts:
+- Section 4.5: Run all scripts in the scripts/expermental/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
+- Section 4.6: Same as above.
+- Section 4.7: Repeat the experiments for section 4.5 with different thresholds in the ReconstructAndProject.py script.
+- Section 4.8: Run all scripts in the scripts/numerical/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
+
+The resulting plots (see example below) will be located /results folder.
 
 ## Example results:
 
