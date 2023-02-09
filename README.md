@@ -37,7 +37,7 @@ It is recommended to have storage space of 500 GB to run the full experimental r
 
 The script folder is organized in the following manner:
 
-scripts/experimental/generation........................./ReconstructAndProject.py
+        /scripts/experimental/generation........................./ReconstructAndProject.py
 
                     /training../MSD./FewFOs............./WorkflowExperimentalDataMSD_train_segm.py
                                     /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographMSD_train_segm.py
@@ -74,10 +74,10 @@ scripts/experimental/generation........................./ReconstructAndProject.p
 For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*.
 
 To reproduce the various results in the paper follow the following scripts:
-- Section 4.5: Run all scripts in the scripts/expermental/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
-- Section 4.6: Same as above.
-- Section 4.7: Repeat the experiments for section 4.5 with different thresholds in the ReconstructAndProject.py script.
-- Section 4.8: Run all scripts in the scripts/numerical/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
+- **Section 4.5:** Run all scripts in the scripts/expermental/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
+- **Section 4.6**: Same as above.
+- **Section 4.7**: Repeat the experiments for section 4.5 with different thresholds in the ReconstructAndProject.py script.
+- **Section 4.8**: Run all scripts in the scripts/numerical/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
 
 The resulting plots (see example below) will be located /results folder.
 
