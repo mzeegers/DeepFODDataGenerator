@@ -39,36 +39,36 @@ The script folder is organized in the following manner:
 
         /scripts/experimental/generation........................./ReconstructAndProject.py
 
-                    /training../MSD./FewFOs............./WorkflowExperimentalDataMSD_train_segm.py
-                                    /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographMSD_train_segm.py
-                                    /ManyFOs............/WorkflowExperimentalDataManyFOMSD_train_segm.py
-                                    /MixedFOs.........../WorkflowExperimentalDataMixedMSD_train_segm.py
-                               /UNet/FewFOs............./WorkflowExperimentalDataUNet_train_segm.py
-                                    /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographUNet_train_segm.py
-                                    /ManyFOs............/WorkflowExperimentalDataManyFOUNet_train_segm.py
-                                    /MixedFOs.........../WorkflowExperimentalDataMixedUNet_train_segm.py
-                                    
-                    /testing............................/WorkflowExperimentalDataMSD_Test.py
-                                                        /WorkflowExperimentalDataUNet_Test.py
-                                                        
-                    /plotting.........................../PlotAllResultsDiffFOamounts.py
-                             .........................../PlotAllResultsManyvsOneProj.py
+                             /training../MSD./FewFOs............./WorkflowExperimentalDataMSD_train_segm.py
+                                             /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographMSD_train_segm.py
+                                             /ManyFOs............/WorkflowExperimentalDataManyFOMSD_train_segm.py
+                                             /MixedFOs.........../WorkflowExperimentalDataMixedMSD_train_segm.py
+                                        /UNet/FewFOs............./WorkflowExperimentalDataUNet_train_segm.py
+                                             /FewFOsOneRadiograph/WorkflowExperimentalDataOneRadiographUNet_train_segm.py
+                                             /ManyFOs............/WorkflowExperimentalDataManyFOUNet_train_segm.py
+                                             /MixedFOs.........../WorkflowExperimentalDataMixedUNet_train_segm.py
+                                            
+                             /testing............................/WorkflowExperimentalDataMSD_Test.py
+                                                                 /WorkflowExperimentalDataUNet_Test.py
+                                                                
+                             /plotting.........................../PlotAllResultsDiffFOamounts.py
+                                      .........................../PlotAllResultsManyvsOneProj.py
 
-       /numerical.../generation........................./PhantomGeneratorTrainandTest.py
-                                                        /PhantomProjectorTrainandTest.py
-                                                        /SpectralDataGeneratorTrainandTest.py
-                                                        /ReconstructAndProject.py
-                                                        /CompareSegmentationsandGT.py
-       
-                    /training../MSD./FewFOs............./WorkflowNumericalDataMSD_train_segm.py
-                                    /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographMSD_train_segm.py
-                               /UNet/FewFOs............./WorkflowNumericalDataUNet_train_segm.py
-                                    /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographUNet_train_segm.py
-                                    
-                    /testing............................/WorkflowNumericalDataMSD_Test.py
-                                                        /WorkflowNumericalDataUNet_Test.py
-                                                        
-                    /plotting.........................../PlotAllResultsManyvsOneProj.py
+                /numerical.../generation........................./PhantomGeneratorTrainandTest.py
+                                                                 /PhantomProjectorTrainandTest.py
+                                                                 /SpectralDataGeneratorTrainandTest.py
+                                                                 /ReconstructAndProject.py
+                                                                 /CompareSegmentationsandGT.py
+               
+                             /training../MSD./FewFOs............./WorkflowNumericalDataMSD_train_segm.py
+                                             /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographMSD_train_segm.py
+                                        /UNet/FewFOs............./WorkflowNumericalDataUNet_train_segm.py
+                                             /FewFOsOneRadiograph/WorkflowNumericalDataOneRadiographUNet_train_segm.py
+                                            
+                             /testing............................/WorkflowNumericalDataMSD_Test.py
+                                                                 /WorkflowNumericalDataUNet_Test.py
+                                                                
+                             /plotting.........................../PlotAllResultsManyvsOneProj.py
        
 
 For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*.
