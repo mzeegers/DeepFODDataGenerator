@@ -18,7 +18,6 @@ import astra
 import cv2
 import numpy as np
 import os
-import pylab
 import pyqtgraph as pq      #pyqtgraph slices through the first axis of a 3D array
 import scipy as sp
 import scipy.ndimage

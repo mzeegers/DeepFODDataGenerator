@@ -6,9 +6,31 @@
     
 ## Introduction
 
+DeepFODDataGenerator is a Python package for easy generation of training data to apply deep learning for detection of (foreign) objects detection on X-ray projections. The generator follows a workflow of creating reconstructions from CT scans of training objects, and subsequently applying segmentation and virtual projections. The results are ground truth locations of the foreign objects on the X-ray projections from the CT scan, without having to manually annotate each of these.
+This package provides scripts for applying this workflow for any X-ray object detection method, given that there are CT objects of training objects available. Additionally, the package provides scripts for complete reproduction of the experiments in the associated paper titled '[A tomographic workflow to enable deep learning for X-ray based foreign object detection](https://www.sciencedirect.com/science/article/pii/S0957417422010429)', in which the workflow is demonstrated and analyzed through a series of experiments with laboratory CT data and numerical data.  
+
+
 ## Requirements
 
+Running the scripts requires a number of major and minor packages:
+
+**Major**:
+1. ASTRA Toolbox:
+https://github.com/astra-toolbox/astra-toolbox
+2. MSDNet:
+https://github.com/dmpelt/msdnet
+3. PyTorch:
+https://pytorch.org/
+
+Minor (but essential):
+csv, cv2, matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
+
+*Optional*:
+physdata.xray, pyqtgraph (useful for plotting and examining intermediate results)
+
+
 ## Scripts
+
 
 
 ## Example results:
@@ -22,7 +44,7 @@ Below are sample results of comparisons of two quality measures between differen
 
 ## References
 
-The algorithms and routines implemented in this python package are described in following [paper](https://www.sciencedirect.com/science/article/pii/S0957417422010429) published in Expert Systems with Applications. If you use (parts of) this code in a publication, we would appreciate it if you would refer to:
+The algorithms and routines implemented in this Python package are described in following [paper](https://www.sciencedirect.com/science/article/pii/S0957417422010429) published in Expert Systems with Applications. If you use (parts of) this code in a publication, we would appreciate it if you would refer to:
 
 ```
 @article{,
