@@ -24,7 +24,7 @@ https://github.com/dmpelt/msdnet
 https://pytorch.org/
 
 Minor (but essential):
-csv, cv2, matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
+csv, cv2 (OpenCV), matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
 
 *Optional*:
 cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and examining intermediate results),
@@ -96,11 +96,11 @@ The script folder is organized in the following manner:
 
 For the training of the networks there are scripting files available that allows for scheduling the training procedures on the GPU (named ScripterCUDA*coreindex*).
 
-To reproduce the various results in the paper follow the following scripts:
-- **Section 4.5:** Run all scripts in the scripts/expermental/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
+To reproduce the various results in the [paper](https://www.sciencedirect.com/science/article/pii/S0957417422010429), follow the following scripts:
+- **Section 4.5:** Run all scripts in the scripts/expermental/ folder in the above order (with multiple network trainings with the number of objects and runs as described in this section).
 - **Section 4.6**: Same as above.
 - **Section 4.7**: Repeat the experiments for section 4.5 with different thresholds in the ReconstructAndProject.py script.
-- **Section 4.8**: Run all scripts in the scripts/numerical/ folder in the above order (with multiple network training with the number of objects and runs as described in this section).
+- **Section 4.8**: Run all scripts in the scripts/numerical/ folder in the above order (with multiple network trainings with the number of objects and runs as described in this section).
 
 The resulting plots (see example below) will be located /results folder.
 
