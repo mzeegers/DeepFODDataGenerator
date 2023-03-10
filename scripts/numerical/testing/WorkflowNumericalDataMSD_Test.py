@@ -3,7 +3,7 @@
 # This script carries out the testing of MSD networks on the workflow-generated (numerical) testing data
 # The results are the csv files in the results/quantitative/ folder
 
-# The code assumes that the MSD networks are rained and available in the scripts/numerical/training/MSD/ folders
+# The code assumes that the MSD networks are trained and available in the scripts/numerical/training/MSD/ folders
 # Any untrained or undesired network configuration can be removed below.
 
 # CT data for testing are those in the data/Numerical/ProjectionDataTest/ and /data/Numerical/GTProjectionsPerfectTest/ folders

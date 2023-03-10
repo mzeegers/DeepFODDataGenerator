@@ -3,7 +3,7 @@
 # This script carries out the testing of UNet networks on the workflow-generated (experimental) testing data
 # The results are the csv files in the results/quantitative/ folder
 
-# The code assumes that the UNet networks are rained and available in the scripts/experimental/training/MSD/ folders
+# The code assumes that the UNet networks are trained and available in the scripts/experimental/training/MSD/ folders
 # Any untrained or undesired network configuration can be removed below.
 
 # CT data for testing are the ones with instance numbers 66-111 and 9, 14, 26, 38, 50, 59 (not containing foreign objects)
