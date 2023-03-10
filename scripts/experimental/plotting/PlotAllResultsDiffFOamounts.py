@@ -1,4 +1,4 @@
-#Ploting script for results from MSD and UNet networks tested on workflow generated data (with varying amounts of foreign objects)
+#Plotting script for results from MSD and UNet networks tested on workflow generated data (with varying amounts of foreign objects)
 
 # This script plots the results of MSD and UNet networks on the workflow-generated (experimental) testing data
 # The plots indicate the difference in results when different number of foreign objects are contained in the CT scanned objects (few vs. many vs. mixed)

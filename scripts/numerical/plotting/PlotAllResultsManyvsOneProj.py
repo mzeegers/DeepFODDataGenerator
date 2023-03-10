@@ -1,4 +1,4 @@
-#Ploting script for results from MSD and UNet networks tested on workflow generated data (many projection vs. one projection per scan) for simulated CT data
+#Plotting script for results from MSD and UNet networks tested on workflow generated data (many projection vs. one projection per scan) for simulated CT data
 
 # This script plots the results of MSD and UNet networks on the workflow-generated (numerical) testing data
 # The plots indicate the difference in results when all training examples are used in a CT rather than only one annotated example
