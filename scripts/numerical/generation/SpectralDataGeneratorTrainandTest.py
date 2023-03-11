@@ -235,7 +235,7 @@ class ProjectionGenerator(object):
         #Collect the attenuation spectra of all involved materials
         self.Sp.collectAttenuationSpectra(self.Rootdatapath)
 
-        #Create projection for all instances
+        #Create projection
         SpecProj = np.zeros((self.EnergyBins, self.sizey, self.sizex), dtype=np.float32)
 
         MatProjsInst = tifffile.imread(self.PathToProjs + '/Instance' + str(Instance).zfill(3) + '/Instance' + str(Instance).zfill(3) + 'Angle' + str(Angle).zfill(5) + '.tiff')[0:self.Materials,:,:]
