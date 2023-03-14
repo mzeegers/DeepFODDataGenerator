@@ -24,10 +24,10 @@ https://github.com/dmpelt/msdnet
 https://pytorch.org/
 
 Minor (but essential):
-csv, cv2 (OpenCV), matplotlib, numpy, pickle, scipy, sklearn, tiffile, tqdm
+csv, cv2 (OpenCV), matplotlib, numpy, pickle, scipy, sklearn, tifffile, tqdm
 
 *Optional*:
-cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and examining intermediate results),
+cudatoolkit (recommended), physdata.xray, pyqtgraph (useful for plotting and examining intermediate results)
 
 The code has been tested with Python version 3.8.1 on Fedora 36, with Intel(R) Core(TM) i7-7700K CPU, GeForce GTX 1070 GPU, CUDA version 11.8 and CUDA toolkit 10.1.243.
 
