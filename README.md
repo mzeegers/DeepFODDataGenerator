@@ -35,7 +35,7 @@ Also, for running the workflow with experimental data, it is required to downloa
 
 It is recommended to have storage space of at least 500 GB to run the full experimental reproduction of the results in the paper. For your own experiments derived from this code, this amount of storage space is of course not needed.
 
-The scripts/numerical/generation/ folder contains an operations.c file to speed up computations. This can be used by compiling by running 'gcc -shared -fopenmp -fPIC operations.c -o operations.so -lm'
+The scripts/numerical/generation/ folder contains an operations.c file to speed up computations. This can be used by compiling by running 'gcc -shared -fopenmp -fPIC operations.c -o operations.so -lm' 
 
 ## Scripts
 
